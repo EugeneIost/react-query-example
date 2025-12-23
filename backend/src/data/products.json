@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Офисное кресло премиум",
+    "price": 14999,
+    "description": "Эргономичное офисное кресло с регулировкой высоты и поддержкой поясницы",
+    "characterictics": [
+      {
+        "article": "CHAIR-2023-PRO",
+        "type": "Офисная мебель",
+        "material": "Ткань, сталь, пластик",
+        "height": 110,
+        "width": 68,
+        "country": "Россия"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Смартфон Galaxy S23",
+    "price": 89999,
+    "description": "Флагманский смартфон с мощным процессором и продвинутой камерой",
+    "characterictics": [
+      {
+        "article": "PHONE-GS23-256",
+        "type": "Электроника",
+        "material": "Стекло, алюминий",
+        "height": 14.6,
+        "width": 7.0,
+        "country": "Вьетнам"
+      },
+      {
+        "article": "PHONE-GS23-512",
+        "type": "Электроника",
+        "material": "Стекло, алюминий",
+        "height": 14.6,
+        "width": 7.0,
+        "country": "Вьетнам"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Диван угловой \"Монако\"",
+    "price": 45999,
+    "description": "Просторный угловой диван с механизмом трансформации",
+    "characterictics": [
+      {
+        "article": "SOFA-MON-220",
+        "type": "Мягкая мебель",
+        "material": "Экокожа, дерево, поролон",
+        "height": 85,
+        "width": 320,
+        "country": "Беларусь"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Ноутбук MacBook Air M2",
+    "price": 129999,
+    "description": "Легкий и мощный ноутбук с процессором Apple M2",
+    "characterictics": [
+      {
+        "article": "NB-MBA-M2-13",
+        "type": "Электроника",
+        "material": "Алюминий",
+        "height": 1.13,
+        "width": 30.41,
+        "country": "Китай"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Кухонный стол \"Милан\"",
+    "price": 22999,
+    "description": "Деревянный обеденный стол на 6 персон",
+    "characterictics": [
+      {
+        "article": "TABLE-MIL-OAK",
+        "type": "Кухонная мебель",
+        "material": "Дуб, сталь",
+        "height": 75,
+        "width": 120,
+        "country": "Россия"
+      },
+      {
+        "article": "TABLE-MIL-WAL",
+        "type": "Кухонная мебель",
+        "material": "Орех, сталь",
+        "height": 75,
+        "width": 120,
+        "country": "Россия"
+      }
+    ]
+  }
+]

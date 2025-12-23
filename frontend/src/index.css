@@ -1,0 +1,158 @@
+@import 'tailwindcss';
+
+@theme {
+  /* ===== ЦВЕТОВАЯ ПАЛИТРА (темная тема) ===== */
+
+  /* Основные цвета - темная палитра */
+  --color-primary-50: #051224;
+  --color-primary-100: #0a1d3a;
+  --color-primary-200: #0f2850;
+  --color-primary-300: #143366;
+  --color-primary-400: #193e7c;
+  --color-primary-500: #1e4992;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #3b82f6;
+  --color-primary-800: #60a5fa;
+  --color-primary-900: #93c5fd;
+
+  /* Нейтральные цвета - темная палитра */
+  --color-neutral-50: #0a0a0a;
+  --color-neutral-100: #171717;
+  --color-neutral-200: #262626;
+  --color-neutral-300: #404040;
+  --color-neutral-400: #525252;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #a3a3a3;
+  --color-neutral-700: #d4d4d4;
+  --color-neutral-800: #e5e5e5;
+  --color-neutral-900: #f5f5f5;
+  --color-neutral-950: #fafafa;
+
+  /* Функциональные цвета */
+  --color-success: #10b981;
+  --color-success-50: #0f7d4d;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-accent: #8b5cf6;
+  --color-error: #c01216;
+  --color-error-50: #a01010;
+
+  /* Системные цвета */
+  --color-background: var(--color-neutral-50);
+  --color-foreground: var(--color-neutral-900);
+  --color-border: var(--color-neutral-800);
+  --color-ring: var(--color-primary-500);
+
+  /* ===== ТИПОГРАФИКА ===== */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* ===== СКОРУГЛЕНИЯ ===== */
+  --radius-sm: 0.125rem;
+  --radius-base: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* ===== ТЕНИ (адаптированные для темной темы) ===== */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+  --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.6), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.6), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.6);
+
+  /* Кастомные тени */
+  --shadow-soft: 0 2px 15px -3px rgba(0, 0, 0, 0.5), 0 10px 20px -2px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.3);
+  --shadow-glow-accent: 0 0 20px rgba(139, 92, 246, 0.3);
+
+  /* ===== АНИМАЦИИ ===== */
+  --animate-fade-in: fade-in 0.5s ease-in-out;
+  --animate-slide-up: slide-up 0.3s ease-out;
+  --animate-bounce-slow: bounce 3s infinite;
+  --animate-pulse-slow: pulse 3s infinite;
+  --animate-spin-slow: spin 3s linear infinite;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    0% {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounce-slow {
+    0%,
+    100% {
+      transform: translateY(-5%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}
+
+body {
+  width: 100%;
+  height: 100%;
+
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+  @apply bg-neutral-100 text-neutral-900;
+}
+
+#root {
+  @apply h-full w-full;
+}
+
+@layer utilities {
+  .scrollbar-custom {
+    scrollbar-width: thin; /* Для Firefox */
+    scrollbar-color: var(--color-neutral-700) var(--color-neutral-400);
+  }
+
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: var(--color-neutral-400);
+    border-radius: 4px;
+  }
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    background: var(--color-neutral-700);
+    border-radius: 4px;
+  }
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: var(--color-neutral-600);
+  }
+}
