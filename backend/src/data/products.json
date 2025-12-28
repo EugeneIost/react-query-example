@@ -1,10 +1,10 @@
 [
   {
     "id": 1,
-    "name": "Офисное кресло премиум",
+    "name": "Офисное кресло премиум!",
     "price": 14999,
     "description": "Эргономичное офисное кресло с регулировкой высоты и поддержкой поясницы",
-    "characterictics": [
+    "characteristics": [
       {
         "article": "CHAIR-2023-PRO",
         "type": "Офисная мебель",
@@ -20,13 +20,13 @@
     "name": "Смартфон Galaxy S23",
     "price": 89999,
     "description": "Флагманский смартфон с мощным процессором и продвинутой камерой",
-    "characterictics": [
+    "characteristics": [
       {
         "article": "PHONE-GS23-256",
         "type": "Электроника",
         "material": "Стекло, алюминий",
         "height": 14.6,
-        "width": 7.0,
+        "width": 7,
         "country": "Вьетнам"
       },
       {
@@ -34,7 +34,7 @@
         "type": "Электроника",
         "material": "Стекло, алюминий",
         "height": 14.6,
-        "width": 7.0,
+        "width": 7,
         "country": "Вьетнам"
       }
     ]
@@ -44,7 +44,7 @@
     "name": "Диван угловой \"Монако\"",
     "price": 45999,
     "description": "Просторный угловой диван с механизмом трансформации",
-    "characterictics": [
+    "characteristics": [
       {
         "article": "SOFA-MON-220",
         "type": "Мягкая мебель",
@@ -60,7 +60,7 @@
     "name": "Ноутбук MacBook Air M2",
     "price": 129999,
     "description": "Легкий и мощный ноутбук с процессором Apple M2",
-    "characterictics": [
+    "characteristics": [
       {
         "article": "NB-MBA-M2-13",
         "type": "Электроника",
@@ -76,7 +76,7 @@
     "name": "Кухонный стол \"Милан\"",
     "price": 22999,
     "description": "Деревянный обеденный стол на 6 персон",
-    "characterictics": [
+    "characteristics": [
       {
         "article": "TABLE-MIL-OAK",
         "type": "Кухонная мебель",
@@ -92,6 +92,38 @@
         "height": 75,
         "width": 120,
         "country": "Россия"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "test222",
+    "price": 300,
+    "description": "234234",
+    "characteristics": [
+      {
+        "article": "234234",
+        "type": "234234",
+        "material": "234234234",
+        "height": 2,
+        "width": 2,
+        "country": "2342342"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "test1",
+    "price": 500,
+    "description": "24234234",
+    "characteristics": [
+      {
+        "article": "234234",
+        "type": "324234",
+        "material": "234234",
+        "height": 4,
+        "width": 5,
+        "country": "234324"
       }
     ]
   }

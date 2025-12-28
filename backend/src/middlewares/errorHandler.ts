@@ -12,5 +12,5 @@ export const errorHandler = (
 ) => {
   console.error(err);
   res.status(500).json({ message: 'Something went wrong!' });
-  res.status(404).json({ message: 'Route not found' });
+  res.status(404).json({ message: 'Путь запроса не найден, проверьте корректность URL' });
 };

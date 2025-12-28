@@ -22,11 +22,49 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
   }
 };
 
+// export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
+//   try {
+//     const products = await readProductsFromFile();
+//     res.json(products);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+
 export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const products = await readProductsFromFile();
-    console.log(products);
-    res.json(products);
+    
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    
+    const paginatedProducts = products.slice(startIndex, endIndex);
+    
+    const pagination: {
+      currentPage: number;
+      totalPages: number;
+      totalItems: number;
+      itemsPerPage: number;
+      hasNextPage: boolean;
+      hasPrevPage: boolean;
+    } = {
+      currentPage: page,
+      totalPages: Math.ceil(products.length / limit),
+      totalItems: products.length,
+      itemsPerPage: limit,
+      hasNextPage: endIndex < products.length,
+      hasPrevPage: startIndex > 0
+    };
+    
+    res.json({
+      success: true,
+      data: paginatedProducts,
+      pagination
+    });
+    
   } catch (error) {
     next(error);
   }

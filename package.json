@@ -8,11 +8,6 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {
-    "@hookform/resolvers": "^5.2.2",
-    "react-hook-form": "^7.69.0",
-    "yup": "^1.7.1"
-  },
   "devDependencies": {
     "concurrently": "^9.2.1"
   }

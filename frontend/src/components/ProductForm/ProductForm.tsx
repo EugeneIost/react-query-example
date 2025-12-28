@@ -3,17 +3,22 @@ import { Controller, FormProvider, useFieldArray, useForm } from 'react-hook-for
 import { Button, Card, Form, Input, InputNumber, Space } from 'antd'
 import { PlusCircleIcon } from 'lucide-react'
 import { productSchema } from './validationSchema'
-import { initialValues } from './formInitialValues'
-import type { FC } from 'react'
+import { emptyFormValues } from './emptyFormValues'
+import { useEffect, type FC } from 'react'
 import type { ProductFormData } from '@/types/types'
 import CharacteristicForm from './CharacteristicForm/CharacteristicForm'
 
-const ProductForm: FC = () => {
+type Props = {
+  initialValues?: ProductFormData
+  onSubmit: (data: ProductFormData) => void
+}
+
+const ProductForm: FC<Props> = ({ onSubmit, initialValues }) => {
   const methods = useForm<ProductFormData>({
     resolver: yupResolver(productSchema),
     mode: 'all',
-    reValidateMode: 'onChange',
-    defaultValues: initialValues,
+    reValidateMode: 'onBlur',
+    defaultValues: initialValues || emptyFormValues,
   })
 
   const {
@@ -22,27 +27,38 @@ const ProductForm: FC = () => {
     formState: { errors, isValid, isSubmitting, isDirty },
     trigger,
     watch,
+    reset,
   } = methods
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'characteristics',
+    name: 'characteristics'
   })
 
-  const onSubmit = async (data: ProductFormData) => {
+  const updateForm = async (data: ProductFormData) => {
     const isFormValid = await trigger()
+
+    onSubmit(data)
 
     if (!isFormValid) return
   }
 
+  useEffect(() => {
+    if (!initialValues) return
+
+    reset(initialValues)
+
+  }, [initialValues])
+
   const price = watch('price')
+
+  console.log("HELLO")
 
   return (
     <Card>
       <h1 className='font-bold mb-6'>Создание нового продукта</h1>
       <FormProvider {...methods}>
-        <Form layout='vertical' onFinish={handleSubmit(onSubmit)} className='space-y-6'>
-          {/* Базовые поля */}
+        <Form layout='vertical' onFinish={handleSubmit(updateForm)} className='space-y-6'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
             <Form.Item
               label='Название'
@@ -103,7 +119,6 @@ const ProductForm: FC = () => {
             />
           </Form.Item>
 
-          {/* Динамические характеристики */}
           <div className='border-t pt-6'>
             <div className='flex justify-between items-center mb-4'>
               <h3 className='text-lg font-semibold'>Характеристики продукта</h3>
@@ -127,7 +142,7 @@ const ProductForm: FC = () => {
 
             {fields.map((field, index) => (
               <CharacteristicForm
-                field={field}
+                key={field.article}
                 isDeleteButtonShown={fields.length > 1}
                 onDelete={(index) => remove(index)}
                 index={index}
@@ -142,7 +157,7 @@ const ProductForm: FC = () => {
 
             <Space>
               <Button onClick={() => trigger()}>Проверить форму</Button>
-              <Button type='primary' htmlType='submit' loading={isSubmitting} disabled={isSubmitting} size='large'>
+              <Button type='primary' htmlType='submit' loading={isSubmitting} disabled={isSubmitting || !isDirty} size='large'>
                 {isSubmitting ? 'Отправка...' : 'Создать продукт'}
               </Button>
             </Space>

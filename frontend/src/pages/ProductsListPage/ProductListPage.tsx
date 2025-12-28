@@ -1,16 +1,18 @@
 import { useProducts } from '@/hooks/useProducts'
-import { Button, Card } from 'antd'
+import type { Product } from '@/types/types'
+import { Button, Card, Pagination } from 'antd'
 import Link from 'antd/es/typography/Link'
 import Title from 'antd/es/typography/Title'
 import { DollarSignIcon } from 'lucide-react'
-import type { FC } from 'react'
+import { type FC } from 'react'
 import { useNavigate } from 'react-router'
 
 interface ProductListPageProps {}
 
 const ProductListPage: FC<ProductListPageProps> = () => {
   const navigate = useNavigate()
-  const { data } = useProducts()
+
+  const { data: productPage, page, setPage, isPlaceholderData } = useProducts()
 
   const usdFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -28,10 +30,10 @@ const ProductListPage: FC<ProductListPageProps> = () => {
       </div>
 
       <div className='flex flex-col w-full h-full gap-5'>
-        {(data || []).map((product) => (
+        {(productPage?.data || []).map((product: Product) => (
           <Card key={product.id} className='w-full h-fit p-3'>
             <div className='flex justify-between'>
-              <Link>
+              <Link onClick={() => navigate(`/products/${product.id}`)}>
                 <h2 className='text-2lx'>{product.name}</h2>
               </Link>
 
@@ -45,6 +47,15 @@ const ProductListPage: FC<ProductListPageProps> = () => {
           </Card>
         ))}
       </div>
+
+      <Pagination
+        pageSize={productPage?.pagination.itemsPerPage || 0}
+        current={page}
+        total={productPage?.pagination.totalItems || 0}
+        onChange={setPage}
+        showSizeChanger={false}
+        disabled={isPlaceholderData}
+      />
     </div>
   )
 }

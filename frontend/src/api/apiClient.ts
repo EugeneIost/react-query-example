@@ -1,14 +1,30 @@
 import axios from 'axios'
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 
-// Базовый интерфейс для ответов API
 export interface ApiResponse<T = any> {
   data: T
   status: number
   message?: string
 }
 
-class ApiClient {
+export interface BackendError {
+  message?: string
+  error?: string
+}
+
+// Кастомный класс ошибки для API
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public status?: number,
+    public data?: any
+  ) {
+    super(message)
+    this.name = 'ApiError'
+  }
+}
+
+export class ApiClient {
   private axiosInstance: AxiosInstance
 
   constructor(baseURL: string) {
@@ -37,10 +53,24 @@ class ApiClient {
 
     this.axiosInstance.interceptors.response.use(
       (response: AxiosResponse) => response,
-      (error: Error) => {
-        throw new Error(error.message)
+      (error: AxiosError) => {
+        if (error.response) {
+          const { data, status } = error.response
+
+          const errorMessage = this.extractErrorMessage(data)
+
+          throw new ApiError(errorMessage, status, data)
+        }
       },
     )
+  }
+
+  private extractErrorMessage(data: BackendError | string | any): string {
+    if (!data) return 'Произошла ошибка'
+    
+    if (typeof data === 'object') return data.message
+
+    return 'Произошла ошибка'
   }
 
   public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
@@ -68,5 +98,3 @@ class ApiClient {
     return response.data
   }
 }
-
-export const apiClient = new ApiClient('api')

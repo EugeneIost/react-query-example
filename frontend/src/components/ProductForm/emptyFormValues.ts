@@ -1,4 +1,4 @@
-export const initialValues = {
+export const emptyFormValues = {
   name: '',
   price: 0,
   description: '',

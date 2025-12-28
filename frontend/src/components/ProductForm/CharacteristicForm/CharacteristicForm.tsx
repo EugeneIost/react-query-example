@@ -2,16 +2,15 @@ import type { ProductFormData } from '@/types/types'
 import { Button, Card, Form, Input, InputNumber } from 'antd'
 import { DeleteIcon } from 'lucide-react'
 import type { FC } from 'react'
-import { Controller, useFormContext, type FieldArrayWithId, type FieldErrors } from 'react-hook-form'
+import { Controller, useFormContext } from 'react-hook-form'
 
 interface CharacteristicFormProps {
   isDeleteButtonShown: boolean
-  field: FieldArrayWithId<ProductFormData, 'characteristics', 'id'>
   index: number
   onDelete: (index: number) => void
 }
 
-const CharacteristicForm: FC<CharacteristicFormProps> = ({ field, isDeleteButtonShown, onDelete, index }) => {
+const CharacteristicForm: FC<CharacteristicFormProps> = ({ isDeleteButtonShown, onDelete, index }) => {
   const {
     control,
     formState: { errors },
@@ -19,7 +18,6 @@ const CharacteristicForm: FC<CharacteristicFormProps> = ({ field, isDeleteButton
 
   return (
     <Card
-      key={field.id}
       className='mb-4'
       title={
         <div className='flex justify-between items-center'>
@@ -44,7 +42,6 @@ const CharacteristicForm: FC<CharacteristicFormProps> = ({ field, isDeleteButton
           />
         </Form.Item>
 
-        {/* Поле Type */}
         <Form.Item
           label='Тип'
           required
@@ -64,7 +61,6 @@ const CharacteristicForm: FC<CharacteristicFormProps> = ({ field, isDeleteButton
           />
         </Form.Item>
 
-        {/* Поле Material */}
         <Form.Item
           label='Материал'
           required
@@ -80,7 +76,6 @@ const CharacteristicForm: FC<CharacteristicFormProps> = ({ field, isDeleteButton
           />
         </Form.Item>
 
-        {/* Поле Country */}
         <Form.Item
           label='Страна производства'
           required
@@ -96,7 +91,6 @@ const CharacteristicForm: FC<CharacteristicFormProps> = ({ field, isDeleteButton
           />
         </Form.Item>
 
-        {/* Поле Height и Width в одной строке */}
         <div className='col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4'>
           <Form.Item
             label='Высота (см)'

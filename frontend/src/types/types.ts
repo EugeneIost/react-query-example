@@ -20,3 +20,18 @@ export interface ProductFormData extends Omit<Product, 'id'> {
   description: string
   characteristics: Product['characteristics']
 }
+
+export interface PaginatedResponse<T> {
+  success: boolean;
+  data: T[];
+  pagination: {
+    currentPage: number;
+    totalPages: number;
+    totalItems: number;
+    itemsPerPage: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  };
+}
+
+
