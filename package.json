@@ -1,6 +1,7 @@
 {
   "name": "react-query-example",
   "version": "1.0.0",
+  "workspaces": ["backend", "frontend"],
   "scripts": {
     "start": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\""
   },
